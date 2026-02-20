@@ -185,9 +185,65 @@
             100% { box-shadow: 0 0 0 0 rgba(255, 153, 0, 0); }
         }
 
+        /* Контейнер для плавающих фигур */
+        .glass-background {
+            position: fixed;
+            inset: 0;
+            z-index: -1; /* Чтобы фигуры были за карточками */
+            pointer-events: none; /* Чтобы фигуры не мешали кликать по кнопкам */
+            overflow: hidden;
+        }
+
+        /* Общие свойства для всех фигур */
+        .shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.03); /* Очень прозрачный белый */
+            backdrop-filter: blur(12px); /* Тот самый эффект стекла */
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            animation: float-shapes infinite alternate ease-in-out;
+        }
+
+        /* Конкретные формы и позиции */
+        .shape-1 {
+            width: 300px; height: 300px;
+            border-radius: 50%; /* Круг */
+            top: 10%; left: -5%;
+            animation-duration: 20s;
+        }
+
+        .shape-2 {
+            width: 400px; height: 250px;
+            border-radius: 100px; /* Овал */
+            bottom: 5%; right: -5%;
+            animation-duration: 25s;
+            animation-delay: -5s;
+        }
+
+        .shape-3 {
+            width: 150px; height: 150px;
+            border-radius: 30px; /* Квадрат со скруглением */
+            top: 40%; left: 70%;
+            animation-duration: 18s;
+            animation-delay: -2s;
+        }
+
+        /* Анимация плавного движения */
+        @keyframes float-shapes {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(50px, 100px) rotate(15deg); }
+        }
+
     </style>
 </head>
 <body>
+
+    <div class="glass-background">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+</div>
 
 <div class="ambient-bg"></div>
 
