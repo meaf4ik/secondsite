@@ -118,6 +118,16 @@
         }
         .btn-action:hover { transform: scale(1.05); box-shadow: 0 0 25px var(--accent); }
 
+        textarea {
+    /* Это свойство убирает возможность растягивать поле */
+    resize: none; 
+    
+    /* Рекомендую также задать фиксированную высоту и ширину, 
+       чтобы поле выглядело аккуратно */
+    width: 100%;
+    height: 100px;
+}
+
         /* АРСЕНАЛ И SVG-СПИСКИ */
         .arsenal { grid-column: 3; }
         .arsenal-item {
