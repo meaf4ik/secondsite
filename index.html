@@ -376,35 +376,43 @@
 
 <script>
     function openModal(id, event) {
-    const modal = document.getElementById(id);
-    const content = modal.querySelector('.modal-content');
-    
-    // 1. Получаем координаты кнопки, на которую нажали
-    const rect = event.currentTarget.getBoundingClientRect();
-    
-    // 2. Рассчитываем позицию окна (чтобы оно открылось рядом или прямо на кнопке)
-    // Мы берем координаты кнопки и немного смещаем, если кнопка с краю
-    let top = rect.top;
-    let left = rect.left;
+        const modal = document.getElementById(id);
+        const content = modal.querySelector('.modal-content');
+        
+        // 1. Получаем координаты кнопки
+        const rect = event.currentTarget.getBoundingClientRect();
+        
+        // 2. Рассчитываем позицию
+        let top = rect.top;
+        let left = rect.left;
 
-    // Корректировка, чтобы окно не вылезало за правый край экрана
-    if (left + 350 > window.innerWidth) {
-        left = window.innerWidth - 380;
+        // Если это нижняя кнопка (ОБО МНЕ), окно должно расти ВВЕРХ, а не вниз
+        // Проверяем: если кнопка ниже середины экрана
+        if (top > window.innerHeight / 2) {
+            top = rect.top - 250; // Поднимаем окно выше кнопки на 250px
+            content.style.transformOrigin = "bottom left";
+        } else {
+            content.style.transformOrigin = "top left";
+        }
+
+        // Корректировка, чтобы окно не вылезало за правый край
+        if (left + 350 > window.innerWidth) {
+            left = window.innerWidth - 350;
+        }
+
+        // 3. Применяем координаты
+        content.style.top = top + "px";
+        content.style.left = left + "px";
+
+        // 4. Показываем
+        modal.classList.add('active');
     }
-    
-    // Корректировка, чтобы окно не улетало слишком низко
-    if (top + 400 > window.innerHeight) {
-        top = window.innerHeight - 450;
+
+    // ТА САМАЯ ФУНКЦИЯ, КОТОРОЙ НЕ ХВАТАЛО
+    function closeModal(id) {
+        const modal = document.getElementById(id);
+        modal.classList.remove('active');
     }
-
-    // 3. Применяем координаты и точку роста
-    content.style.top = top + "px";
-    content.style.left = left + "px";
-    content.style.transformOrigin = "top left"; // Растет из верхнего левого угла кнопки
-
-    // 4. Показываем
-    modal.classList.add('active');
-}
 </script>
 
 </body>
