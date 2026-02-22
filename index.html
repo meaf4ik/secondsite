@@ -368,54 +368,7 @@
 .arsenal-item:nth-child(3) { animation-delay: 1.1s; }
 .arsenal-item:nth-child(4) { animation-delay: 1.2s; }
 
-        /* --- АДАПТИВ ПОД ТЕЛЕФОНЫ --- */
-@media (max-width: 768px) {
-    .container {
-        /* Вместо 3-х колонок делаем 1 колонку */
-        grid-template-columns: 1fr;
-        padding: 15px;
-        gap: 15px;
-    }
-
-    /* Кнопки "ВХОД" и "ТЕМА" ставим в один ряд */
-    .login, .theme {
-        grid-column: span 1;
-        width: 100%;
-    }
-    
-    .login { justify-self: stretch; }
-    .theme { justify-self: stretch; }
-
-    /* Блоки статистики (ОТКЛИК, АРХИТЕКТУРА, ДИНАМИКА) */
-    .stats-wrapper {
-        flex-direction: column; /* Ставим их друг под друга */
-    }
-
-    /* Исправляем вылет текста в "Прием отзывов" */
-    .feedback h2 {
-        font-size: 18px; /* Уменьшаем размер заголовка */
-        line-height: 1.2;
-    }
-
-    .feedback, .tech-stack-card {
-        grid-column: 1 / -1; /* Растягиваем на всю ширину */
-    }
-
-    /* Чтобы текст внутри карточек не обрезался */
-    .stat-card strong {
-        font-size: 14px;
-        white-space: normal; /* Разрешаем перенос текста на новую строку */
-    }
-    
-    .stat-card span {
-        font-size: 10px;
-    }
-}
-        .card {
-    min-width: 0; /* Позволяет карточкам сжиматься меньше содержимого */
-    overflow: hidden; /* Обрезает лишнее, если текст совсем не влезет */
-}
-
+       
 .stat-card strong, .block-title {
     font-size: clamp(10px, 2vw, 14px); /* Текст будет плавно уменьшаться вместе с экраном */
 }
@@ -423,6 +376,19 @@
 .feedback h2 {
     font-size: clamp(14px, 3vw, 24px);
     word-wrap: break-word; /* Если слово слишком длинное, оно перенесется */
+}
+        .container {
+    min-width: 600px; /* Это заставит телефон показывать десктопную версию целиком */
+}
+
+.stat-card strong {
+    white-space: nowrap; /* Заголовок "АРХИТЕКТУРА" будет в одну строку */
+    font-size: 11px;    /* Немного уменьшим для страховки */
+}
+
+.feedback h2 {
+    font-size: 18px !important; /* Уменьшаем "ПРИЕМ ОТЗЫВОВ", чтобы он не вылезал */
+    line-height: 1.2;
 }
 
     </style>
